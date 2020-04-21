@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/notes_page"
+        android:title="@string/notes"
+        android:icon="@drawable/ic_post_add_24px"/>
+
+    <item
+        android:id="@+id/reminder_page"
+        android:title="@string/reminder"
+        android:icon="@drawable/ic_alarm_on_black_24dp"/>
+
+    <item
+        android:id="@+id/account_page"
+        android:title="@string/account"
+        android:icon="@drawable/ic_face_black_24dp"/>
+
+</menu>
