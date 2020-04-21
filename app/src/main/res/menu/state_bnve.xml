@@ -5,6 +5,6 @@
         android:state_checked="true"
         android:title="active" />
     <item
-        android:color="@color/colorWhiteT"
+        android:color="@color/colorPrimaryDark"
         android:title="not_active" />
 </selector>
