@@ -9,7 +9,7 @@ public class inputNotesViewModel extends ViewModel {
 
     public inputNotesViewModel(){
         mText = new MutableLiveData<>();
-        mText.setValue("There’s nothing to see");
+        mText.setValue("");
 
     }
 
