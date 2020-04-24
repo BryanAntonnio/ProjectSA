@@ -9,7 +9,11 @@
         android:id="@+id/navigation_notes"
         android:name="com.uc.finalproject.ui.notes.NotesFragments"
         android:label="@string/notes"
-        tools:layout="@layout/fragment_notes" />
+        tools:layout="@layout/fragment_notes" >
+        <action
+            android:id="@+id/action_navigation_notes_to_navigation_notes_input"
+            app:destination="@id/navigation_notes_input" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notes_input"
@@ -21,7 +25,11 @@
         android:id="@+id/navigation_reminder"
         android:name="com.uc.finalproject.ui.reminder.ReminderFragments"
         android:label="@string/reminder"
-        tools:layout="@layout/fragment_reminder" />
+        tools:layout="@layout/fragment_reminder" >
+        <action
+            android:id="@+id/action_navigation_reminder_to_navigation_reminder_input"
+            app:destination="@id/navigation_reminder_input" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_reminder_input"
