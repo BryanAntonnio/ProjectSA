@@ -1,4 +1,4 @@
 package com.uc.finalproject;
 
-public class SplashScreen {
+public class MainAdapter {
 }

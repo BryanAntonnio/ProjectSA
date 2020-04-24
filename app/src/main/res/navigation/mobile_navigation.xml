@@ -12,10 +12,22 @@
         tools:layout="@layout/fragment_notes" />
 
     <fragment
+        android:id="@+id/navigation_notes_input"
+        android:name="com.uc.finalproject.ui.notes_input.inputNotesFragments"
+        android:label="@string/notes_input"
+        tools:layout="@layout/fragment_notes_input" />
+
+    <fragment
         android:id="@+id/navigation_reminder"
         android:name="com.uc.finalproject.ui.reminder.ReminderFragments"
         android:label="@string/reminder"
         tools:layout="@layout/fragment_reminder" />
+
+    <fragment
+        android:id="@+id/navigation_reminder_input"
+        android:name="com.uc.finalproject.ui.reminder_input.inputReminderFragments"
+        android:label="@string/reminder_input"
+        tools:layout="@layout/fragment_reminder_input" />
 
     <fragment
         android:id="@+id/navigation_account"

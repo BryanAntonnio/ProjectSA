@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Students Assistant</string>
     <string name="notes">Notes</string>
+    <string name="notes_input">InputNotes</string>
     <string name="reminder">Reminder</string>
+    <string name="reminder_input">InputReminder</string>
     <string name="account">Account</string>
 
     <!-- TODO: Remove or change this placeholder text -->
