@@ -17,5 +17,4 @@ import com.uc.finalproject.R;
 
 public class inputNotesFragments extends Fragment {
 
-
 }

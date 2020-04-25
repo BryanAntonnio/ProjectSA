@@ -21,7 +21,7 @@ import com.uc.finalproject.ui.notes.NotesFragments;
 import com.uc.finalproject.ui.reminder.ReminderFragments;
 
 public class MainActivity extends AppCompatActivity {
-//    FloatingActionButton button_add_notes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,16 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
                 new NotesFragments()).commit();
-
-//        button_add_notes = findViewById(R.id.button_tambah_notes);
-//        button_add_notes.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, NotesAddActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
 
     }
 
