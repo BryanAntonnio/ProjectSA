@@ -8,4 +8,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="not_login">You are not signed in yet</string>
+    <string name="button_login">Login</string>
+    <string name="button_signup">Sign up Here</string>
 </resources>
