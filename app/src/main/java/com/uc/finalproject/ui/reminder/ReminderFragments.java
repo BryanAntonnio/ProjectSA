@@ -15,19 +15,9 @@ import androidx.lifecycle.ViewModelProviders;
 import com.uc.finalproject.R;
 
 public class ReminderFragments extends Fragment {
-
-    private ReminderViewModel reminderViewModel;
-
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        reminderViewModel= ViewModelProviders.of(this).get(ReminderViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notes, container, false);
-        final TextView textView = root.findViewById(R.id.textView3);
-        reminderViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>(){
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_reminder, container, false);
     }
 }

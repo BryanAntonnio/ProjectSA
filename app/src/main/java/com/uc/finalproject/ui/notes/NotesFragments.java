@@ -16,19 +16,9 @@ import com.uc.finalproject.R;
 
 public class NotesFragments extends Fragment {
 
-    private NotesViewModel notesViewModel;
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState){
-        notesViewModel = ViewModelProviders.of(this).get(NotesViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notes, container, false);
-        final TextView textView = root.findViewById(R.id.textView);
-        notesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_notes, container, false);
     }
 }
