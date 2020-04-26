@@ -47,7 +47,7 @@
                 app:srcCompat="@drawable/ic_account_circle_black_24dp" />
 
             <TextView
-                android:id="@+id/username"
+                android:id="@+id/username_login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"

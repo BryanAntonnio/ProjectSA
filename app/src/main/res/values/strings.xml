@@ -11,4 +11,8 @@
     <string name="not_login">You are not signed in yet</string>
     <string name="button_login">Login</string>
     <string name="button_signup">Sign up Here</string>
+    <string name="username">Username</string>
+    <string name="password" />
+    <string name="passwordinput">Password</string>
+    <string name="usernameinput">Username</string>
 </resources>
