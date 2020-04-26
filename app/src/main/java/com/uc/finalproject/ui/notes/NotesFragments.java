@@ -19,6 +19,11 @@ public class NotesFragments extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_notes, container, false);
+//        return inflater.inflate(R.layout.fragment_notes, container, false);
+        final View v = inflater.inflate(R.layout.fragment_account, container, false);
+
+        button_add_notes = v.findViewById(R.id.button_tambah_notes);
+
+        return v;
     }
 }
