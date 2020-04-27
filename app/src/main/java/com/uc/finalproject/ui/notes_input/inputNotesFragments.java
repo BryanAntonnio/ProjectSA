@@ -16,5 +16,9 @@ import androidx.lifecycle.ViewModelProviders;
 import com.uc.finalproject.R;
 
 public class inputNotesFragments extends Fragment {
-
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
 }

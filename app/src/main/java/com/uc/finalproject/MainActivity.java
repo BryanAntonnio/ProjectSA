@@ -44,15 +44,6 @@ public class MainActivity extends AppCompatActivity {
                     switch (item.getItemId()){
                         case R.id.notes_page:
                             selectedFragment = new NotesFragments();
-                            button_add_notes = findViewById(R.id.button_tambah_notes);
-                            button_add_notes.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(MainActivity.this, NotesAddActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            });
                             break;
                         case R.id.reminder_page:
                             selectedFragment = new ReminderFragments();
