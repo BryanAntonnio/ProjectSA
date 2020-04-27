@@ -15,4 +15,7 @@
     <string name="password" />
     <string name="passwordinput">Password</string>
     <string name="usernameinput">Username</string>
+    <string name="format_item">Text Format</string>
+    <string name="gallery_item">Gallery</string>
+    <string name="scratch_item">Scratch</string>
 </resources>

@@ -12,12 +12,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.uc.finalproject.R;
+import com.uc.finalproject.model.ArrayReminder;
+import com.uc.finalproject.model.SimpanReminder;
 import com.uc.finalproject.ui.notes.NotesAddActivity;
 
+import java.util.ArrayList;
+
 public class ReminderFragments extends Fragment {
+    TextView lbl_nodata_3, lbl_nodata_4, lbl_nodata_5;
+    RecyclerView mRecycleView;
+    ArrayList<SimpanReminder> listReminder = ArrayReminder.listReminder;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -27,6 +36,10 @@ public class ReminderFragments extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        lbl_nodata_3 = view.findViewById(R.id.lbl_nodata_3);
+        lbl_nodata_4 = view.findViewById(R.id.lbl_nodata_4);
+        lbl_nodata_5 = view.findViewById(R.id.lbl_nodata_5);
+        mRecycleView = view.findViewById(R.id.recycler_reminder);
         FloatingActionButton button_add_reminder = view.findViewById(R.id.button_tambah_reminder);
         button_add_reminder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,5 +49,24 @@ public class ReminderFragments extends Fragment {
                 getActivity().finish();
             }
         });
+        if (listReminder.isEmpty()){
+            lbl_nodata_3.setVisibility(View.VISIBLE);
+            lbl_nodata_4.setVisibility(View.VISIBLE);
+            lbl_nodata_5.setVisibility(View.VISIBLE);
+        }
+        else {
+            lbl_nodata_3.setVisibility(View.INVISIBLE);
+            lbl_nodata_4.setVisibility(View.INVISIBLE);
+            lbl_nodata_5.setVisibility(View.INVISIBLE);
+            showReminder(listReminder);
+        }
+    }
+
+    public void showReminder (ArrayList<SimpanReminder>listReminder){
+        mRecycleView.setHasFixedSize(true);
+        mRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        ReminderAdapter adapter = new ReminderAdapter(getActivity());
+        adapter.setListReminder(listReminder);
+        mRecycleView.setAdapter(adapter);
     }
 }
