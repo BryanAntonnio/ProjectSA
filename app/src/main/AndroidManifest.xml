@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.notes.NotesAddActivity" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".ui.reminder.ReminderAddActivity" android:parentActivityName=".MainActivity"/>
 
     </application>
 
