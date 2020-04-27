@@ -10,16 +10,21 @@ import com.uc.finalproject.MainActivity;
 import com.uc.finalproject.R;
 
 public class SplashActivity extends AppCompatActivity {
+    private static int splashtime = 4000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screen_splash);
 
-        new Handler().postDelayed()
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        },splashtime);
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
     }
 }
