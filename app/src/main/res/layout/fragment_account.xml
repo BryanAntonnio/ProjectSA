@@ -50,37 +50,42 @@
             <Button
                 android:id="@+id/change_account"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="358dp"
-                android:layout_height="39dp"
-                android:layout_marginTop="88dp"
-                android:background="#00FFFFFF"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="96dp"
+                android:layout_marginEnd="96dp"
+                android:layout_marginBottom="24dp"
+                android:background="@android:color/transparent"
                 android:text="@string/change_account"
+                app:layout_constraintBottom_toTopOf="@+id/setting"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.509"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/username_login" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/setting"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="358dp"
-                android:layout_height="39dp"
-                android:layout_marginTop="24dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="96dp"
+                android:layout_marginEnd="96dp"
+                android:layout_marginBottom="24dp"
                 android:text="@string/setting"
+                app:layout_constraintBottom_toTopOf="@+id/logout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/change_account" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/logout"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="358dp"
-                android:layout_height="39dp"
-                android:layout_marginTop="24dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="96dp"
+                android:layout_marginEnd="96dp"
+                android:layout_marginBottom="245dp"
                 android:text="@string/logout"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/setting" />
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
