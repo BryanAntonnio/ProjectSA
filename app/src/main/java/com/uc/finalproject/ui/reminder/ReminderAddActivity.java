@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.uc.finalproject.MainActivity;
 import com.uc.finalproject.R;
@@ -22,6 +24,7 @@ import com.uc.finalproject.model.SimpanReminder;
 public class ReminderAddActivity extends AppCompatDialogFragment {
     private EditText reminder_input;
     String judulReminder;
+    Fragment fragment;
 
     @NonNull
     @Override
@@ -42,10 +45,18 @@ public class ReminderAddActivity extends AppCompatDialogFragment {
                 judulReminder = reminder_input.getText().toString();
                 SimpanReminder simpanReminder = new SimpanReminder(judulReminder);
                 ArrayReminder.listReminder.add(simpanReminder);
+                fragment = new ReminderFragments();
+                loadFragment(fragment);
             }
         });
 
 
         return builder.create();
+    }
+
+    private void loadFragment(Fragment fragment){
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_main, fragment);
+        transaction.commit();
     }
 }
