@@ -18,4 +18,6 @@
     <string name="format_item">Text Format</string>
     <string name="gallery_item">Gallery</string>
     <string name="scratch_item">Scratch</string>
+    <string name="splashtext">"Welcome to Student's Assistant!"
+        "Take notes, create reminder, get your assignments measured! We will help you feel more organized!"</string>
 </resources>

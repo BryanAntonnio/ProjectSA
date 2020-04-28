@@ -4,4 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2AA6FF"/>
+    android:background="#2AA6FF">
+
+    <ImageView
+        android:id="@+id/logoback"
+        android:layout_width="232dp"
+        android:layout_height="243dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.185"
+        app:srcCompat="@drawable/rounded_edittext" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="259dp"
+        android:layout_height="231dp"
+        app:layout_constraintBottom_toBottomOf="@+id/logoback"
+        app:layout_constraintEnd_toEndOf="@+id/logoback"
+        app:layout_constraintStart_toStartOf="@+id/logoback"
+        app:layout_constraintTop_toTopOf="@+id/logoback"
+        app:srcCompat="@drawable/logosa" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="270dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="124dp"
+        android:text="@string/splashtext"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoback" />
+</androidx.constraintlayout.widget.ConstraintLayout>
