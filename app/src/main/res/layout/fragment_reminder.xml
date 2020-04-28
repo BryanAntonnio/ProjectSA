@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/lbl_nodata_4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Add it with the + button to start"
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.441" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/lbl_nodata_5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="reminding yourself using the app!"
@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="0.485" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/lbl_nodata_3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="There’s nothing to see."
@@ -62,4 +62,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add_black_24dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_reminder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

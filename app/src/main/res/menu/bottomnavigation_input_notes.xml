@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/format_item"
+        android:icon="@drawable/ic_text_format_24px"
+        android:title="@string/format_item"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/gallery_item"
+        android:icon="@drawable/ic_insert_photo_black_24dp"
+        android:title="@string/gallery_item"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/scratch_item"
+        android:icon="@drawable/ic_gesture_black_24dp"
+        android:title="@string/scratch_item"
+        app:showAsAction="ifRoom"/>
 </menu>
