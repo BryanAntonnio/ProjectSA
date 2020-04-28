@@ -20,6 +20,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MainActivity"
+            android:parentActivityName=".ui.splash_screen.SplashActivity" />
+        <activity
             android:name=".ui.notes.NotesAddActivity"
             android:parentActivityName=".MainActivity" />
         <activity
