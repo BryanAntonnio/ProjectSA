@@ -1,4 +1,4 @@
-package com.uc.finalproject.ui.reminder;
+package com.uc.finalproject.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

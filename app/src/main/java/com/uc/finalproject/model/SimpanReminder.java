@@ -18,10 +18,6 @@ public class SimpanReminder implements Parcelable {
         return judulReminder;
     }
 
-    public void setJudulReminder(String judulReminder) {
-        this.judulReminder = judulReminder;
-    }
-
     public static final Creator<SimpanReminder> CREATOR = new Creator<SimpanReminder>() {
         @Override
         public SimpanReminder createFromParcel(Parcel in) {

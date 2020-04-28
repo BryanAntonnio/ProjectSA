@@ -1,4 +1,4 @@
-package com.uc.finalproject.ui.notes;
+package com.uc.finalproject.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;

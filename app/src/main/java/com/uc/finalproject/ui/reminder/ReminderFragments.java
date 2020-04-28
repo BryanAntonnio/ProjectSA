@@ -10,16 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.uc.finalproject.R;
+import com.uc.finalproject.adapter.ReminderAdapter;
 import com.uc.finalproject.model.ArrayReminder;
 import com.uc.finalproject.model.SimpanReminder;
-import com.uc.finalproject.ui.notes.NotesAddActivity;
 
 import java.util.ArrayList;
 
@@ -44,9 +42,7 @@ public class ReminderFragments extends Fragment {
         button_add_reminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ReminderAddActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+                openDialog();
             }
         });
         if (listReminder.isEmpty()){
@@ -60,6 +56,11 @@ public class ReminderFragments extends Fragment {
             lbl_nodata_5.setVisibility(View.INVISIBLE);
             showReminder(listReminder);
         }
+    }
+
+    private void openDialog() {
+        ReminderAddActivity reminderAddActivity = new ReminderAddActivity();
+        reminderAddActivity.show(getActivity().getSupportFragmentManager(), "input reminder");
     }
 
     public void showReminder (ArrayList<SimpanReminder>listReminder){
