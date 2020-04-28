@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
-                FloatingActionButton button_add_notes;
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
