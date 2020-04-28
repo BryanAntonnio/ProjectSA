@@ -20,4 +20,7 @@
     <string name="scratch_item">Scratch</string>
     <string name="splashtext">"Welcome to Student's Assistant!"
         "Take notes, create reminder, get your assignments measured! We will help you feel more organized!"</string>
+    <string name="setting">Setting</string>
+    <string name="logout">LOGOUT</string>
+    <string name="change_account">Change Account</string>
 </resources>
