@@ -1,12 +1,31 @@
 package com.uc.finalproject.adapter;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.uc.finalproject.model.SimpanNotes;
+
+import java.util.ArrayList;
+
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.CardViewViewHolder> {
+    private Context context;
+    private ArrayList<SimpanNotes>listNotes;
+
+    public ArrayList<SimpanNotes> getListNotes(){
+        return listNotes;
+    }
+
+    public void setListNotes(ArrayList<SimpanNotes> listNotes) {
+        this.listNotes = listNotes;
+    }
+
+    public NotesAdapter(Context context) {
+        this.context = context;
+    }
 
     @NonNull
     @Override

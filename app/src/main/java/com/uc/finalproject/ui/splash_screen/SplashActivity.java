@@ -11,7 +11,7 @@ import com.uc.finalproject.MainActivity;
 import com.uc.finalproject.R;
 
 public class SplashActivity extends AppCompatActivity {
-    private static int splashtime = 4000;
+    private static int splashtime = 2000;
     SharedPreferences sharedPreferences;
     Boolean fistTime;
 
@@ -20,28 +20,28 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screen_splash);
 
-        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+//        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+//
+//        fistTime = sharedPreferences.getBoolean("firstTime", true);
 
-        fistTime = sharedPreferences.getBoolean("firstTime", true);
-
-        if (fistTime){
+//        if (fistTime){
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    fistTime = false;
-                    editor.putBoolean("firstTime",fistTime);
-                    editor.apply();
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    fistTime = false;
+//                    editor.putBoolean("firstTime",fistTime);
+//                    editor.apply();
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 }
             },splashtime);
-        }
-        else {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+//        }
+//        else {
+//            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
     }
 }
