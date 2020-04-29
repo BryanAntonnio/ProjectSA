@@ -1,52 +1,58 @@
 package com.uc.finalproject.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.uc.finalproject.R;
 import com.uc.finalproject.model.SimpanNotes;
 
 import java.util.ArrayList;
 
-public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.CardViewViewHolder> {
+public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder>{
     private Context context;
-    private ArrayList<SimpanNotes>listNotes;
-
-    public ArrayList<SimpanNotes> getListNotes(){
-        return listNotes;
-    }
-
-    public void setListNotes(ArrayList<SimpanNotes> listNotes) {
-        this.listNotes = listNotes;
-    }
+    private ArrayList<SimpanNotes>listNotes = new ArrayList<>();
 
     public NotesAdapter(Context context) {
         this.context = context;
     }
 
+    public void setListNotes(ArrayList<SimpanNotes>list){
+        listNotes.clear();
+        listNotes.addAll(list);
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
-    public NotesAdapter.CardViewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public NotesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.fragment_notes_list,parent,false);
+        return new NotesViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NotesAdapter.CardViewViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull NotesViewHolder holder, int position) {
+        SimpanNotes simpanNotes = listNotes.get(position);
+        holder.id.setText(simpanNotes.getId());
+        holder.judul.setText(simpanNotes.getJudul());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listNotes.size();
     }
 
-    public class CardViewViewHolder extends RecyclerView.ViewHolder {
-
-        public CardViewViewHolder(@NonNull View itemView) {
+    public class NotesViewHolder extends RecyclerView.ViewHolder {
+        TextView id, judul;
+        public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
+            id = itemView.findViewById(R.id.id_notes);
+            judul = itemView.findViewById(R.id.judul_notes);
         }
     }
 }

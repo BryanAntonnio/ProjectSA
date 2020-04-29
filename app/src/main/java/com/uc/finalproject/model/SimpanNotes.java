@@ -4,16 +4,26 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class SimpanNotes implements Parcelable {
-    private String judul, isi;
+    private String id;
+    private String judul;
+    private String isi;
 
-    protected SimpanNotes(Parcel in) {
-        judul = in.readString();
-        isi = in.readString();
+    public SimpanNotes(){
+
     }
 
-    public SimpanNotes(String judul, String isi) {
+    public SimpanNotes(String id, String judul, String isi) {
+        this.id = id;
         this.judul = judul;
         this.isi = isi;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getJudul() {
@@ -32,17 +42,6 @@ public class SimpanNotes implements Parcelable {
         this.isi = isi;
     }
 
-    public static final Creator<SimpanNotes> CREATOR = new Creator<SimpanNotes>() {
-        @Override
-        public SimpanNotes createFromParcel(Parcel in) {
-            return new SimpanNotes(in);
-        }
-
-        @Override
-        public SimpanNotes[] newArray(int size) {
-            return new SimpanNotes[size];
-        }
-    };
 
     @Override
     public int describeContents() {
@@ -51,7 +50,26 @@ public class SimpanNotes implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(judul);
-        dest.writeString(isi);
+        dest.writeString(this.id);
+        dest.writeString(this.judul);
+        dest.writeString(this.isi);
     }
+
+    protected SimpanNotes(Parcel in) {
+        this.id = in.readString();
+        this.judul = in.readString();
+        this.isi = in.readString();
+    }
+
+    public static final Parcelable.Creator<SimpanNotes> CREATOR = new Parcelable.Creator<SimpanNotes>() {
+        @Override
+        public SimpanNotes createFromParcel(Parcel source) {
+            return new SimpanNotes(source);
+        }
+
+        @Override
+        public SimpanNotes[] newArray(int size) {
+            return new SimpanNotes[size];
+        }
+    };
 }
