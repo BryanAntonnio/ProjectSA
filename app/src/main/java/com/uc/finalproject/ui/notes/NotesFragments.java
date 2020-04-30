@@ -97,6 +97,7 @@ public class NotesFragments extends Fragment {
         NotesAdapter notesAdapter = new NotesAdapter(getContext());
         notesAdapter.setListNotes(simpanNotes);
         recyclerView.setAdapter(notesAdapter);
+
     }
 
 }
