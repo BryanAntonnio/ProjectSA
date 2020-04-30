@@ -28,6 +28,8 @@
         <activity
             android:name=".ui.reminder.ReminderAddActivity"
             android:parentActivityName=".MainActivity" />
+        <activity android:name=".ui.notes.NotesResult"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

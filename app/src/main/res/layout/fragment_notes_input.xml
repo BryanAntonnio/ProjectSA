@@ -20,7 +20,7 @@
         app:titleTextColor="@color/colorWhite" />
 
     <EditText
-        android:id="@+id/judul_notes_result"
+        android:id="@+id/judul_notes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -53,15 +53,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/judul_notes_result" />
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/tools_input_notes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/judul_notes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
