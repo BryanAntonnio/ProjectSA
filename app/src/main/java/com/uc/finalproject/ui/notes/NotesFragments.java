@@ -51,15 +51,15 @@ public class NotesFragments extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.recycler_notes);
         getNotes();
-//        FloatingActionButton button_add_notes = view.findViewById(R.id.button_tambah_notes);
-////        button_add_notes.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View v) {
-////                Intent intent = new Intent(getActivity(), NotesAddActivity.class);
-////                startActivity(intent);
-////                getActivity().finish();
-////            }
-////        });
+        FloatingActionButton button_add_notes = view.findViewById(R.id.button_tambah_notes);
+        button_add_notes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NotesAddActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
     }
 
     private void getNotes(){
