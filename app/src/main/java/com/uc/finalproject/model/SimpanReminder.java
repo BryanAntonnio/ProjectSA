@@ -4,31 +4,33 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class SimpanReminder implements Parcelable {
+    private String id;
     private String judulReminder;
 
-    protected SimpanReminder(Parcel in) {
-        judulReminder = in.readString();
+    public SimpanReminder() {
     }
 
-    public SimpanReminder(String judulReminder) {
+    public SimpanReminder(String id, String judulReminder) {
+        this.id = id;
         this.judulReminder = judulReminder;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getJudulReminder() {
         return judulReminder;
     }
 
-    public static final Creator<SimpanReminder> CREATOR = new Creator<SimpanReminder>() {
-        @Override
-        public SimpanReminder createFromParcel(Parcel in) {
-            return new SimpanReminder(in);
-        }
+    public void setJudulReminder(String judulReminder) {
+        this.judulReminder = judulReminder;
+    }
 
-        @Override
-        public SimpanReminder[] newArray(int size) {
-            return new SimpanReminder[size];
-        }
-    };
 
     @Override
     public int describeContents() {
@@ -37,6 +39,24 @@ public class SimpanReminder implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(judulReminder);
+        dest.writeString(this.id);
+        dest.writeString(this.judulReminder);
     }
+
+    protected SimpanReminder(Parcel in) {
+        this.id = in.readString();
+        this.judulReminder = in.readString();
+    }
+
+    public static final Parcelable.Creator<SimpanReminder> CREATOR = new Parcelable.Creator<SimpanReminder>() {
+        @Override
+        public SimpanReminder createFromParcel(Parcel source) {
+            return new SimpanReminder(source);
+        }
+
+        @Override
+        public SimpanReminder[] newArray(int size) {
+            return new SimpanReminder[size];
+        }
+    };
 }

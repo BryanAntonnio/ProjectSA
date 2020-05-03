@@ -14,17 +14,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.uc.finalproject.R;
 import com.uc.finalproject.adapter.ReminderAdapter;
 import com.uc.finalproject.model.ArrayReminder;
 import com.uc.finalproject.model.SimpanReminder;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
 
 public class ReminderFragments extends Fragment {
     TextView lbl_nodata_3, lbl_nodata_4, lbl_nodata_5;
     RecyclerView mRecycleView;
-    ArrayList<SimpanReminder> listReminder = ArrayReminder.listReminder;
+    final ArrayList<SimpanReminder>listReminder = new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,6 +46,7 @@ public class ReminderFragments extends Fragment {
         lbl_nodata_4 = view.findViewById(R.id.lbl_nodata_4);
         lbl_nodata_5 = view.findViewById(R.id.lbl_nodata_5);
         mRecycleView = view.findViewById(R.id.recycler_reminder);
+        getReminder();
         FloatingActionButton button_add_reminder = view.findViewById(R.id.button_tambah_reminder);
         button_add_reminder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,17 +54,46 @@ public class ReminderFragments extends Fragment {
                 openDialog();
             }
         });
-        if (listReminder.isEmpty()){
-            lbl_nodata_3.setVisibility(View.VISIBLE);
-            lbl_nodata_4.setVisibility(View.VISIBLE);
-            lbl_nodata_5.setVisibility(View.VISIBLE);
-        }
-        else {
-            lbl_nodata_3.setVisibility(View.INVISIBLE);
-            lbl_nodata_4.setVisibility(View.INVISIBLE);
-            lbl_nodata_5.setVisibility(View.INVISIBLE);
-            showReminder(listReminder);
-        }
+
+    }
+
+    private void getReminder() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        String url="http://hansrichard2000.c1.biz/studentsassist/reminder/listReminder.php";
+
+        client.get(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                try {
+                    String result = new String(responseBody);
+                    JSONObject responseObject = new JSONObject(result);
+                    JSONArray list = responseObject.getJSONArray("SimpanReminder");
+                    for (int i = 0; i<list.length(); i++){
+                        JSONObject obj = list.getJSONObject(i);
+                        SimpanReminder s = new SimpanReminder(obj.getString("id"), obj.getString("judulReminder"));
+                        listReminder.add(s);
+                        if (listReminder.isEmpty()){
+                            lbl_nodata_3.setVisibility(View.VISIBLE);
+                            lbl_nodata_4.setVisibility(View.VISIBLE);
+                            lbl_nodata_5.setVisibility(View.VISIBLE);
+                        }
+                        else {
+                            lbl_nodata_3.setVisibility(View.INVISIBLE);
+                            lbl_nodata_4.setVisibility(View.INVISIBLE);
+                            lbl_nodata_5.setVisibility(View.INVISIBLE);
+                            showReminder(listReminder);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
     }
 
     private void openDialog() {
@@ -66,8 +104,8 @@ public class ReminderFragments extends Fragment {
     public void showReminder (ArrayList<SimpanReminder>listReminder){
         mRecycleView.setHasFixedSize(true);
         mRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ReminderAdapter adapter = new ReminderAdapter(getActivity());
-        adapter.setListReminder(listReminder);
-        mRecycleView.setAdapter(adapter);
+        ReminderAdapter reminderAdapter = new ReminderAdapter(getContext());
+        reminderAdapter.setListReminder(listReminder);
+        mRecycleView.setAdapter(reminderAdapter);
     }
 }

@@ -36,8 +36,9 @@ public class NotesFragments extends Fragment {
     public NotesFragments(){
 
     }
-
+    TextView lbl_nodata_1, lbl_nodata_2;
     private RecyclerView recyclerView;
+    final ArrayList<SimpanNotes>simpanNotes = new ArrayList<>();
 
     @Nullable
     @Override
@@ -50,6 +51,8 @@ public class NotesFragments extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.recycler_notes);
+        lbl_nodata_1 = view.findViewById(R.id.lbl_nodata_1);
+        lbl_nodata_2 = view.findViewById(R.id.lbl_nodata_2);
         getNotes();
         FloatingActionButton button_add_notes = view.findViewById(R.id.button_tambah_notes);
         button_add_notes.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +66,7 @@ public class NotesFragments extends Fragment {
     }
 
     private void getNotes(){
-        final ArrayList<SimpanNotes>simpanNotes = new ArrayList<>();
+
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "http://hansrichard2000.c1.biz/studentsassist/notes/listNotes.php";
 
@@ -79,7 +82,15 @@ public class NotesFragments extends Fragment {
                         SimpanNotes s = new SimpanNotes(obj.getString("id"), obj.getString("judul"), obj.getString("isi"));
                         simpanNotes.add(s);
                     }
-                    showNotes(simpanNotes);
+                    if(simpanNotes.isEmpty()){
+                        lbl_nodata_1.setVisibility(View.VISIBLE);
+                        lbl_nodata_2.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        lbl_nodata_1.setVisibility(View.INVISIBLE);
+                        lbl_nodata_2.setVisibility(View.INVISIBLE);
+                        showNotes(simpanNotes);
+                    }
                 }catch (Exception e){
                     Log.d("Exception", "onSuccess" + e.getMessage() );
                 }

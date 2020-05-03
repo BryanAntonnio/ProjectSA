@@ -16,14 +16,12 @@ import java.util.ArrayList;
 
 public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.CardViewViewHolder> {
     private Context context;
-    private ArrayList<SimpanReminder>listReminder;
+    private ArrayList<SimpanReminder>listReminder = new ArrayList<>();
 
-    public ArrayList<SimpanReminder> getListReminder() {
-        return listReminder;
-    }
-
-    public void setListReminder(ArrayList<SimpanReminder> listReminder) {
-        this.listReminder = listReminder;
+    public void setListReminder(ArrayList<SimpanReminder> list) {
+        listReminder.clear();
+        listReminder.addAll(list);
+        notifyDataSetChanged();
     }
 
     public ReminderAdapter(Context context){
@@ -39,19 +37,21 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.CardVi
 
     @Override
     public void onBindViewHolder(@NonNull ReminderAdapter.CardViewViewHolder holder, int position) {
-        final SimpanReminder s = getListReminder().get(position);
+        final SimpanReminder s = listReminder.get(position);
+        holder.id.setText(s.getId());
         holder.judulReminder.setText(s.getJudulReminder());
     }
 
     @Override
     public int getItemCount() {
-        return getListReminder().size();
+        return listReminder.size();
     }
 
     public class CardViewViewHolder extends RecyclerView.ViewHolder {
-        TextView judulReminder;
+        TextView id, judulReminder;
         public CardViewViewHolder(@NonNull View itemView) {
             super(itemView);
+            id = itemView.findViewById(R.id.id_reminder);
             judulReminder = itemView.findViewById(R.id.reminder_text);
         }
     }
