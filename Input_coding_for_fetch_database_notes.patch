@@ -1,0 +1,381 @@
+Index: app/src/main/java/com/uc/finalproject/adapter/NotesAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/uc/finalproject/adapter/NotesAdapter.java	(revision 766393fac09aa41f7fe138cd14267fecb976a0ab)
++++ app/src/main/java/com/uc/finalproject/adapter/NotesAdapter.java	(revision 03f7c145f9b6acf909d9e6883ce9bbbbe72245bd)
+@@ -1,52 +1,58 @@
+ package com.uc.finalproject.adapter;
+ 
+ import android.content.Context;
++import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
++import android.widget.TextView;
+ 
+ import androidx.annotation.NonNull;
+ import androidx.recyclerview.widget.RecyclerView;
+ 
++import com.uc.finalproject.R;
+ import com.uc.finalproject.model.SimpanNotes;
+ 
+ import java.util.ArrayList;
+ 
+-public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.CardViewViewHolder> {
++public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder>{
+     private Context context;
+-    private ArrayList<SimpanNotes>listNotes;
+-
+-    public ArrayList<SimpanNotes> getListNotes(){
+-        return listNotes;
+-    }
+-
+-    public void setListNotes(ArrayList<SimpanNotes> listNotes) {
+-        this.listNotes = listNotes;
+-    }
++    private ArrayList<SimpanNotes>listNotes = new ArrayList<>();
+ 
+     public NotesAdapter(Context context) {
+         this.context = context;
+     }
+ 
++    public void setListNotes(ArrayList<SimpanNotes>list){
++        listNotes.clear();
++        listNotes.addAll(list);
++        notifyDataSetChanged();
++    }
++
+     @NonNull
+     @Override
+-    public NotesAdapter.CardViewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+-        return null;
++    public NotesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
++        View view = LayoutInflater.from(context).inflate(R.layout.fragment_notes_list,parent,false);
++        return new NotesViewHolder(view);
+     }
+ 
+     @Override
+-    public void onBindViewHolder(@NonNull NotesAdapter.CardViewViewHolder holder, int position) {
+-
++    public void onBindViewHolder(@NonNull NotesViewHolder holder, int position) {
++        SimpanNotes simpanNotes = listNotes.get(position);
++        holder.id.setText(simpanNotes.getId());
++        holder.judul.setText(simpanNotes.getJudul());
+     }
+ 
+     @Override
+     public int getItemCount() {
+-        return 0;
++        return listNotes.size();
+     }
+ 
+-    public class CardViewViewHolder extends RecyclerView.ViewHolder {
+-
+-        public CardViewViewHolder(@NonNull View itemView) {
++    public class NotesViewHolder extends RecyclerView.ViewHolder {
++        TextView id, judul;
++        public NotesViewHolder(@NonNull View itemView) {
+             super(itemView);
++            id = itemView.findViewById(R.id.id_notes);
++            judul = itemView.findViewById(R.id.judul_notes);
+         }
+     }
+ }
+Index: app/src/main/java/com/uc/finalproject/model/SimpanNotes.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/uc/finalproject/model/SimpanNotes.java	(revision 766393fac09aa41f7fe138cd14267fecb976a0ab)
++++ app/src/main/java/com/uc/finalproject/model/SimpanNotes.java	(revision 03f7c145f9b6acf909d9e6883ce9bbbbe72245bd)
+@@ -4,18 +4,28 @@
+ import android.os.Parcelable;
+ 
+ public class SimpanNotes implements Parcelable {
+-    private String judul, isi;
++    private String id;
++    private String judul;
++    private String isi;
+ 
+-    protected SimpanNotes(Parcel in) {
+-        judul = in.readString();
+-        isi = in.readString();
++    public SimpanNotes(){
++
+     }
+ 
+-    public SimpanNotes(String judul, String isi) {
++    public SimpanNotes(String id, String judul, String isi) {
++        this.id = id;
+         this.judul = judul;
+         this.isi = isi;
+     }
+ 
++    public String getId() {
++        return id;
++    }
++
++    public void setId(String id) {
++        this.id = id;
++    }
++
+     public String getJudul() {
+         return judul;
+     }
+@@ -32,17 +42,6 @@
+         this.isi = isi;
+     }
+ 
+-    public static final Creator<SimpanNotes> CREATOR = new Creator<SimpanNotes>() {
+-        @Override
+-        public SimpanNotes createFromParcel(Parcel in) {
+-            return new SimpanNotes(in);
+-        }
+-
+-        @Override
+-        public SimpanNotes[] newArray(int size) {
+-            return new SimpanNotes[size];
+-        }
+-    };
+ 
+     @Override
+     public int describeContents() {
+@@ -51,7 +50,26 @@
+ 
+     @Override
+     public void writeToParcel(Parcel dest, int flags) {
+-        dest.writeString(judul);
+-        dest.writeString(isi);
++        dest.writeString(this.id);
++        dest.writeString(this.judul);
++        dest.writeString(this.isi);
++    }
++
++    protected SimpanNotes(Parcel in) {
++        this.id = in.readString();
++        this.judul = in.readString();
++        this.isi = in.readString();
+     }
++
++    public static final Parcelable.Creator<SimpanNotes> CREATOR = new Parcelable.Creator<SimpanNotes>() {
++        @Override
++        public SimpanNotes createFromParcel(Parcel source) {
++            return new SimpanNotes(source);
++        }
++
++        @Override
++        public SimpanNotes[] newArray(int size) {
++            return new SimpanNotes[size];
++        }
++    };
+ }
+Index: app/src/main/java/com/uc/finalproject/ui/notes/NotesFragments.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/uc/finalproject/ui/notes/NotesFragments.java	(revision 766393fac09aa41f7fe138cd14267fecb976a0ab)
++++ app/src/main/java/com/uc/finalproject/ui/notes/NotesFragments.java	(revision 03f7c145f9b6acf909d9e6883ce9bbbbe72245bd)
+@@ -2,6 +2,7 @@
+ 
+ import android.content.Intent;
+ import android.os.Bundle;
++import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+@@ -13,11 +14,31 @@
+ import androidx.fragment.app.Fragment;
+ import androidx.lifecycle.Observer;
+ import androidx.lifecycle.ViewModelProviders;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
+ 
+ import com.google.android.material.floatingactionbutton.FloatingActionButton;
++import com.loopj.android.http.AsyncHttpClient;
++import com.loopj.android.http.AsyncHttpResponseHandler;
+ import com.uc.finalproject.R;
++import com.uc.finalproject.adapter.NotesAdapter;
++import com.uc.finalproject.model.SimpanNotes;
++
++import org.json.JSONArray;
++import org.json.JSONException;
++import org.json.JSONObject;
++
++import java.util.ArrayList;
++
++import cz.msebera.android.httpclient.Header;
+ 
+ public class NotesFragments extends Fragment {
++    public NotesFragments(){
++
++    }
++
++    private RecyclerView recyclerView;
++
+     @Nullable
+     @Override
+     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+@@ -28,14 +49,54 @@
+     @Override
+     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+         super.onViewCreated(view, savedInstanceState);
+-        FloatingActionButton button_add_notes = view.findViewById(R.id.button_tambah_notes);
+-        button_add_notes.setOnClickListener(new View.OnClickListener() {
++        recyclerView = view.findViewById(R.id.recycler_notes);
++        getNotes();
++//        FloatingActionButton button_add_notes = view.findViewById(R.id.button_tambah_notes);
++////        button_add_notes.setOnClickListener(new View.OnClickListener() {
++////            @Override
++////            public void onClick(View v) {
++////                Intent intent = new Intent(getActivity(), NotesAddActivity.class);
++////                startActivity(intent);
++////                getActivity().finish();
++////            }
++////        });
++    }
++
++    private void getNotes(){
++        final ArrayList<SimpanNotes>simpanNotes = new ArrayList<>();
++        AsyncHttpClient client = new AsyncHttpClient();
++        String url = "http://hansrichard2000.c1.biz/studentsassist/notes/listNotes.php";
++
++        client.get(url, new AsyncHttpResponseHandler() {
+             @Override
+-            public void onClick(View v) {
+-                Intent intent = new Intent(getActivity(), NotesAddActivity.class);
+-                startActivity(intent);
+-                getActivity().finish();
++            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
++                try {
++                    String result = new String(responseBody);
++                    JSONObject responseObject = new JSONObject(result);
++                    JSONArray list = responseObject.getJSONArray("SimpanNotes");
++                    for (int i = 0; i<list.length(); i++){
++                        JSONObject obj = list.getJSONObject(i);
++                        SimpanNotes s = new SimpanNotes(obj.getString("id"), obj.getString("judul"), obj.getString("isi"));
++                        simpanNotes.add(s);
++                    }
++                    showNotes(simpanNotes);
++                }catch (Exception e){
++                    Log.d("Exception", "onSuccess" + e.getMessage() );
++                }
++            }
++
++            @Override
++            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
++                Log.d("OnFailureStudent", "onFailure" + error.getMessage());
+             }
+         });
+     }
++
++    private void showNotes(ArrayList<SimpanNotes> simpanNotes) {
++        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
++        NotesAdapter notesAdapter = new NotesAdapter(getContext());
++        notesAdapter.setListNotes(simpanNotes);
++        recyclerView.setAdapter(notesAdapter);
++    }
++
+ }
+Index: app/src/main/res/layout/fragment_notes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_notes.xml	(revision 766393fac09aa41f7fe138cd14267fecb976a0ab)
++++ app/src/main/res/layout/fragment_notes.xml	(revision 03f7c145f9b6acf909d9e6883ce9bbbbe72245bd)
+@@ -13,7 +13,8 @@
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
++        app:layout_constraintTop_toTopOf="parent"
++        tools:listitem="@layout/fragment_notes_list"/>
+ 
+     <com.google.android.material.floatingactionbutton.FloatingActionButton
+         android:id="@+id/button_tambah_notes"
+@@ -35,6 +36,7 @@
+         android:textAlignment="center"
+         android:textColor="@color/design_default_color_on_secondary"
+         android:textSize="18sp"
++        android:visibility="gone"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.0"
+@@ -50,6 +52,7 @@
+         android:textAlignment="center"
+         android:textColor="@color/design_default_color_on_secondary"
+         android:textSize="18sp"
++        android:visibility="gone"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="1.0"
+Index: app/src/main/res/layout/fragment_notes_list.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_notes_list.xml	(revision 03f7c145f9b6acf909d9e6883ce9bbbbe72245bd)
++++ app/src/main/res/layout/fragment_notes_list.xml	(revision 03f7c145f9b6acf909d9e6883ce9bbbbe72245bd)
+@@ -0,0 +1,59 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content">
++
++    <androidx.cardview.widget.CardView
++        android:id="@+id/notes_list"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="24dp"
++        android:layout_marginTop="24dp"
++        android:layout_marginEnd="24dp"
++        android:background="@color/colorBlue"
++        app:cardCornerRadius="10dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent">
++
++        <androidx.constraintlayout.widget.ConstraintLayout
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:background="@color/colorBlue">
++
++            <TextView
++                android:id="@+id/id_notes"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:layout_marginStart="24dp"
++                android:layout_marginTop="16dp"
++                android:layout_marginBottom="16dp"
++                android:text="no"
++                android:textColor="@color/colorWhite"
++                android:textSize="24sp"
++                android:textStyle="bold"
++                app:layout_constraintBottom_toBottomOf="parent"
++                app:layout_constraintStart_toStartOf="parent"
++                app:layout_constraintTop_toTopOf="parent" />
++
++            <TextView
++                android:id="@+id/judul_notes"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:layout_marginStart="16dp"
++                android:layout_marginTop="16dp"
++                android:layout_marginBottom="16dp"
++                android:text="judul"
++                android:textColor="@color/colorWhite"
++                android:textSize="24sp"
++                android:textStyle="bold"
++                app:layout_constraintBottom_toBottomOf="parent"
++                app:layout_constraintStart_toEndOf="@+id/id_notes"
++                app:layout_constraintTop_toTopOf="parent"
++                app:layout_constraintVertical_bias="0.0" />
++        </androidx.constraintlayout.widget.ConstraintLayout>
++    </androidx.cardview.widget.CardView>
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
