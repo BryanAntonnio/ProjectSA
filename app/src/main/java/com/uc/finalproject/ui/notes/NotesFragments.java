@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,8 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 
 public class NotesFragments extends Fragment {
+    private ProgressBar progressBar;
+
     public NotesFragments(){
 
     }
@@ -53,6 +56,8 @@ public class NotesFragments extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_notes);
         lbl_nodata_1 = view.findViewById(R.id.lbl_nodata_1);
         lbl_nodata_2 = view.findViewById(R.id.lbl_nodata_2);
+        progressBar = view.findViewById(R.id.progressBar2);
+        showLoading(true);
         getNotes();
         FloatingActionButton button_add_notes = view.findViewById(R.id.button_tambah_notes);
         button_add_notes.setOnClickListener(new View.OnClickListener() {
@@ -107,8 +112,17 @@ public class NotesFragments extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         NotesAdapter notesAdapter = new NotesAdapter(getContext());
         notesAdapter.setListNotes(simpanNotes);
+        showLoading(false);
         recyclerView.setAdapter(notesAdapter);
 
+    }
+
+    private void showLoading (Boolean state ){
+        if (state){
+            progressBar.setVisibility(View.VISIBLE);
+        }else {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
 }

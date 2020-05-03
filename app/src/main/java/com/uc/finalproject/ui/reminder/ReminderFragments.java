@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class ReminderFragments extends Fragment {
     TextView lbl_nodata_3, lbl_nodata_4, lbl_nodata_5;
+    private ProgressBar progressBar;
     RecyclerView mRecycleView;
     final ArrayList<SimpanReminder>listReminder = new ArrayList<>();
     @Nullable
@@ -46,6 +48,8 @@ public class ReminderFragments extends Fragment {
         lbl_nodata_4 = view.findViewById(R.id.lbl_nodata_4);
         lbl_nodata_5 = view.findViewById(R.id.lbl_nodata_5);
         mRecycleView = view.findViewById(R.id.recycler_reminder);
+        progressBar = view.findViewById(R.id.progressBar);
+        showLoading(true);
         getReminder();
         FloatingActionButton button_add_reminder = view.findViewById(R.id.button_tambah_reminder);
         button_add_reminder.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +110,15 @@ public class ReminderFragments extends Fragment {
         mRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
         ReminderAdapter reminderAdapter = new ReminderAdapter(getContext());
         reminderAdapter.setListReminder(listReminder);
+        showLoading(false);
         mRecycleView.setAdapter(reminderAdapter);
+    }
+
+    private void showLoading (Boolean state ){
+        if (state){
+            progressBar.setVisibility(View.VISIBLE);
+        }else {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 }
