@@ -24,6 +24,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.uc.finalproject.R;
 import com.uc.finalproject.adapter.NotesAdapter;
 import com.uc.finalproject.model.SimpanNotes;
+import com.uc.finalproject.utils.ItemClickSupport;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -114,7 +115,14 @@ public class NotesFragments extends Fragment {
         notesAdapter.setListNotes(simpanNotes);
         showLoading(false);
         recyclerView.setAdapter(notesAdapter);
-
+        ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                Intent intent = new Intent(getActivity(), NotesResult.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
     }
 
     private void showLoading (Boolean state ){
