@@ -1,31 +1,56 @@
 package com.uc.finalproject.adapter;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class NotesResultAdapter extends RecyclerView.Adapter<NotesResultAdapter.ResultViewHolder> {
+import com.uc.finalproject.R;
+import com.uc.finalproject.model.SimpanNotes;
+
+import java.util.ArrayList;
+
+public class NotesResultAdapter extends RecyclerView.Adapter<NotesResultAdapter.NotesResultViewHolder> {
+    private Context context;
+    private ArrayList<SimpanNotes> listNotes = new ArrayList<>();
+
+    public NotesResultAdapter(Context context) {
+        this.context = context;
+    }
+
+    public void setListNotes(ArrayList<SimpanNotes>list){
+        listNotes.clear();
+        listNotes.addAll(list);
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
-    public ResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public NotesResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.fragment_notes_result,parent,false);
+        return new NotesResultViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ResultViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NotesResultViewHolder holder, int position) {
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listNotes.size();
     }
 
-    public class ResultViewHolder extends RecyclerView.ViewHolder {
-        public ResultViewHolder(@NonNull View itemView) {
+    public class NotesResultViewHolder extends RecyclerView.ViewHolder {
+        EditText judul, isi;
+        public NotesResultViewHolder(@NonNull View itemView) {
             super(itemView);
+            judul = itemView.findViewById(R.id.judul_result);
+            isi = itemView.findViewById(R.id.result_isi);
         }
     }
 }
