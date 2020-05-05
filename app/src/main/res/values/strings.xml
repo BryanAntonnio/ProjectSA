@@ -23,4 +23,5 @@
     <string name="setting">Setting</string>
     <string name="logout">LOGOUT</string>
     <string name="change_account">Change Account</string>
+    <string name="settings">Settings</string>
 </resources>
