@@ -7,7 +7,7 @@ public class SimpanReminder implements Parcelable {
     private String id;
     private String judulReminder;
 
-    public SimpanReminder() {
+    public SimpanReminder(String judulReminder) {
     }
 
     public SimpanReminder(String id, String judulReminder) {
@@ -43,7 +43,7 @@ public class SimpanReminder implements Parcelable {
         dest.writeString(this.judulReminder);
     }
 
-    protected SimpanReminder(Parcel in) {
+    public SimpanReminder(Parcel in) {
         this.id = in.readString();
         this.judulReminder = in.readString();
     }
