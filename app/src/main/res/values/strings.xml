@@ -28,4 +28,7 @@
     <string name="settings_alarm">Alarm</string>
     <string name="settings_general">General</string>
     <string name="settings_system">System</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_sound">Sound</string>
+    <string name="settings_timer">Sleep Timer</string>
 </resources>
