@@ -37,7 +37,9 @@ public class NotesResultAdapter extends RecyclerView.Adapter<NotesResultAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull NotesResultViewHolder holder, int position) {
-
+        SimpanNotes simpanNotes = listNotes.get(position);
+        holder.judul.setText(simpanNotes.getJudul());
+        holder.isi.setText(simpanNotes.getIsi());
     }
 
     @Override

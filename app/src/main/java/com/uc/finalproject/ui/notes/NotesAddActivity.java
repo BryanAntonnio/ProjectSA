@@ -3,6 +3,7 @@ package com.uc.finalproject.ui.notes;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,7 +42,6 @@ import cz.msebera.android.httpclient.Header;
 
 public class NotesAddActivity extends AppCompatActivity {
     EditText judul, isi;
-    String TempJudul, TempIsi;
     Toolbar toolbar;
     final ArrayList<SimpanNotes>simpanNotes = new ArrayList<>();
     @Override
@@ -50,6 +50,7 @@ public class NotesAddActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_notes_input);
         judul = findViewById(R.id.judul_notes);
         isi = findViewById(R.id.input_field);
+
         toolbar = findViewById(R.id.toolbar_input_notes);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -64,13 +65,13 @@ public class NotesAddActivity extends AppCompatActivity {
         });
     }
 
-    private void inputNotes() {
+    private void inputNotes(String title2, String field2) {
         AsyncHttpClient client = new AsyncHttpClient();
-        String url ="hansrichard2000.c1.biz/studentsassist/notes/notesInput.php";
+        String url ="http://hansrichard2000.c1.biz/studentsassist/notes/notesInput.php";
 
         RequestParams params = new RequestParams();
-        params.put("judul", judul);
-        params.put("isi", isi);
+        params.put("judul", title2);
+        params.put("isi", field2);
 
         client.post(url, params, new AsyncHttpResponseHandler() {
             @Override
@@ -78,20 +79,22 @@ public class NotesAddActivity extends AppCompatActivity {
                 try{
                     String result = new String(responseBody);
                     JSONObject responseObject = new JSONObject(result);
-                    JSONArray list = responseObject.getJSONArray("SimpanNotes");
-                    for (int i = 0; i<list.length(); i++){
-                        JSONObject obj = list.getJSONObject(i);
-                    }
+                    String msg = responseObject.getString("message");
+                    showMessage(msg);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Log.d("Error notes", "onSuccess" + e.getMessage() );
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                Log.d("OnFailureNotes", "onFailure" + error.getMessage());
             }
         });
+    }
+
+    private void showMessage(String msg) {
+        Toast.makeText(NotesAddActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -102,7 +105,7 @@ public class NotesAddActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        String msg;
+        String msg, title = null, field= null;
         switch (item.getItemId()){
             case R.id.undo:
                 msg = "Undo";
@@ -111,14 +114,16 @@ public class NotesAddActivity extends AppCompatActivity {
                 msg = "Redo";
                 break;
             case R.id.done:
-
+                title = judul.getText().toString().trim();
+                field = isi.getText().toString().trim();
+                inputNotes(title, field);
+                Intent intent = new Intent(NotesAddActivity.this, NotesResult.class);
+                startActivity(intent);
+                finish();
                 break;
         }
-        inputNotes();
-        Intent intent = new Intent(NotesAddActivity.this, NotesResult.class);
-        startActivity(intent);
-        finish();
-        Toast.makeText(this, msg="New Data Inserted", Toast.LENGTH_LONG).show();
+
+//        Toast.makeText(this, msg="New Data Inserted", Toast.LENGTH_LONG).show();
         return super.onOptionsItemSelected(item);
     }
 }
