@@ -57,17 +57,21 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
                 android:text="@string/settings_general"
-                tools:layout_editor_absoluteX="43dp"
-                tools:layout_editor_absoluteY="66dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_settings" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="88dp"
                 android:text="@string/settings_system"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="307dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/alarm_check" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
