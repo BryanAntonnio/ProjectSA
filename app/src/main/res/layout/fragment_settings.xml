@@ -8,17 +8,43 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <CheckBox
+                android:id="@+id/notif_check"
+                android:layout_width="0dp"
+                android:layout_height="69dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
+                android:paddingLeft="20dp"
+                android:text="@string/settings_notif"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_settings" />
+
+            <CheckBox
+                android:id="@+id/alarm_check"
+                android:layout_width="0dp"
+                android:layout_height="69dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="20dp"
+                android:text="@string/settings_alarm"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notif_check" />
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_settings"
                 android:layout_width="409dp"
                 android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"
+                android:background="@color/colorBlue"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -26,6 +52,24 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:title="@string/settings"
                 app:titleTextColor="#F6F5F5" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_general"
+                tools:layout_editor_absoluteX="43dp"
+                tools:layout_editor_absoluteY="66dp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_system"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="307dp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
 </FrameLayout>
