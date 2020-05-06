@@ -126,4 +126,13 @@ public class NotesAddActivity extends AppCompatActivity {
 //        Toast.makeText(this, msg="New Data Inserted", Toast.LENGTH_LONG).show();
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(NotesAddActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 }

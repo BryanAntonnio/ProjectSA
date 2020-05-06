@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,7 +20,6 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.uc.finalproject.R;
 import com.uc.finalproject.adapter.ReminderAdapter;
-import com.uc.finalproject.model.ArrayReminder;
 import com.uc.finalproject.model.SimpanReminder;
 
 import org.json.JSONArray;
@@ -32,6 +32,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class ReminderFragments extends Fragment {
     TextView lbl_nodata_3, lbl_nodata_4, lbl_nodata_5;
+    Button delete;
     private ProgressBar progressBar;
     RecyclerView mRecycleView;
     final ArrayList<SimpanReminder>listReminder = new ArrayList<>();
@@ -49,6 +50,7 @@ public class ReminderFragments extends Fragment {
         lbl_nodata_5 = view.findViewById(R.id.lbl_nodata_5);
         mRecycleView = view.findViewById(R.id.recycler_reminder);
         progressBar = view.findViewById(R.id.progressBar);
+        delete = view.findViewById(R.id.deleteButton);
         showLoading(true);
         getReminder();
         FloatingActionButton button_add_reminder = view.findViewById(R.id.button_tambah_reminder);
@@ -58,8 +60,16 @@ public class ReminderFragments extends Fragment {
                 openDialog();
             }
         });
-
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ReminderDeleteActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
     }
+
 
     private void getReminder() {
         AsyncHttpClient client = new AsyncHttpClient();

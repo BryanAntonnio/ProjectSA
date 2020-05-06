@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ public class NotesFragments extends Fragment {
     }
     TextView lbl_nodata_1, lbl_nodata_2;
     private RecyclerView recyclerView;
+    Button deleteButton;
     final ArrayList<SimpanNotes>simpanNotes = new ArrayList<>();
 
     @Nullable
@@ -57,6 +59,7 @@ public class NotesFragments extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_notes);
         lbl_nodata_1 = view.findViewById(R.id.lbl_nodata_1);
         lbl_nodata_2 = view.findViewById(R.id.lbl_nodata_2);
+        deleteButton = view.findViewById(R.id.button_delete_notes);
         progressBar = view.findViewById(R.id.progressBar2);
         showLoading(true);
         getNotes();
@@ -65,6 +68,14 @@ public class NotesFragments extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), NotesAddActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NotesDelete.class);
                 startActivity(intent);
                 getActivity().finish();
             }
