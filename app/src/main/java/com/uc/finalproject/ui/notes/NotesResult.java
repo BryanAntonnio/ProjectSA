@@ -19,6 +19,7 @@ import com.loopj.android.http.RequestParams;
 import com.uc.finalproject.MainActivity;
 import com.uc.finalproject.R;
 import com.uc.finalproject.adapter.NotesAdapter;
+import com.uc.finalproject.adapter.NotesResultAdapter;
 import com.uc.finalproject.model.SimpanNotes;
 
 import org.json.JSONArray;
@@ -70,7 +71,7 @@ public class NotesResult extends AppCompatActivity {
                         SimpanNotes s = new SimpanNotes(obj.getString("id"), obj.getString("judul"), obj.getString("isi"));
                         simpanNotes.add(s);
                     }
-                    showNotes(simpanNotes);
+//                    showNotes(simpanNotes);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -83,9 +84,10 @@ public class NotesResult extends AppCompatActivity {
         });
     }
 
-    private void showNotes(ArrayList<SimpanNotes> simpanNotes) {
-
-    }
+//    private void showNotes(ArrayList<SimpanNotes> simpanNotes) {
+//        judul.setText;
+//        NotesResultAdapter notesResultAdapter = new NotesResultAdapter(getCont)
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
