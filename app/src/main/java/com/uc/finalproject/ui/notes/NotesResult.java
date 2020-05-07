@@ -57,6 +57,7 @@ public class NotesResult extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NotesResult.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
             }
@@ -170,5 +171,14 @@ public class NotesResult extends AppCompatActivity {
 
     private void showMessage(String msg) {
         Toast.makeText(NotesResult.this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(NotesResult.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }
