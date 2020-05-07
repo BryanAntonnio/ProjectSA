@@ -43,7 +43,7 @@ public class NotesFragments extends Fragment {
     }
     TextView lbl_nodata_1, lbl_nodata_2;
     private RecyclerView recyclerView;
-    Button deleteButton;
+    Button deleteButton, updateButton;
     final ArrayList<SimpanNotes>simpanNotes = new ArrayList<>();
 
     @Nullable
@@ -60,6 +60,7 @@ public class NotesFragments extends Fragment {
         lbl_nodata_1 = view.findViewById(R.id.lbl_nodata_1);
         lbl_nodata_2 = view.findViewById(R.id.lbl_nodata_2);
         deleteButton = view.findViewById(R.id.button_delete_notes);
+        updateButton = view.findViewById(R.id.button_update_notes);
         progressBar = view.findViewById(R.id.progressBar2);
         showLoading(true);
         getNotes();
@@ -80,7 +81,18 @@ public class NotesFragments extends Fragment {
                 getActivity().finish();
             }
         });
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NotesResult.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
     }
+
+//    private void updateDialog() {
+//    }
 
     private void getNotes(){
 
