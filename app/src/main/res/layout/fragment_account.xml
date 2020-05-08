@@ -39,7 +39,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="64dp"
                 android:layout_marginEnd="32dp"
-                android:text="TextView"
+                android:text="@string/account_user"
                 android:textAlignment="center"
                 android:textColor="@color/design_default_color_on_secondary"
                 android:textSize="24dp"
