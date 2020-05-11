@@ -117,7 +117,7 @@ public class NotesAddActivity extends AppCompatActivity {
                 title = judul.getText().toString().trim();
                 field = isi.getText().toString().trim();
                 inputNotes(title, field);
-                Intent intent = new Intent(NotesAddActivity.this, NotesResult.class);
+                Intent intent = new Intent(NotesAddActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
                 break;
